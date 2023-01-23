@@ -204,7 +204,8 @@ bool CTopi::GenerateAllUipClause(CVector<TULit>& cls)
 		CleanRooted();
 	});
 
-	auto [initMarkedDecLevelsCounter, decLevels] = GetDecLevelsAndMarkInHugeCounter(cls);
+	uint64_t initMarkedDecLevelsCounter; priority_queue<TUV> decLevels;
+	std::tie(initMarkedDecLevelsCounter, decLevels) = GetDecLevelsAndMarkInHugeCounter(cls);
 	if (unlikely(IsUnrecoverable())) return false;
 
 	auto UnvisitedNum = [&](TUV decLevel)
